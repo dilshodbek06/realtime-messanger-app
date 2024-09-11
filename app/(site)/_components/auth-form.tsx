@@ -33,6 +33,8 @@ const AuthForm = () => {
   });
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    console.log(data);
+
     setIsLoading(true);
 
     if (variant === "REGISTER") {
@@ -43,6 +45,8 @@ const AuthForm = () => {
   };
 
   const socialAction = (action: string) => {
+    console.log(action);
+
     setIsLoading(true);
   };
 
