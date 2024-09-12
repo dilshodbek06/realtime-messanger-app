@@ -1,16 +1,30 @@
 "use client";
 import Button from "@/app/_components/button";
 import Input from "@/app/_components/inputs/input";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import AuthSocialButton from "./auth-social-button";
 import { BsGithub, BsGoogle } from "react-icons/bs";
+import axios from "axios";
+import toast from "react-hot-toast";
+
+import { signIn, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 type Variant = "LOGIN" | "REGISTER";
 
 const AuthForm = () => {
+  const session = useSession();
+  const router = useRouter();
+
   const [variant, setVariant] = useState<Variant>("LOGIN");
   const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (session.status === "authenticated") {
+      router.push("/users");
+    }
+  }, [session.status, router]);
 
   const toggleVariant = useCallback(() => {
     if (variant === "LOGIN") {
@@ -32,22 +46,52 @@ const AuthForm = () => {
     },
   });
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log(data);
-
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     setIsLoading(true);
+    try {
+      if (variant === "REGISTER") {
+        axios.post("/api/register", data).then(() => {
+          signIn("credentials", data);
+        });
+      }
 
-    if (variant === "REGISTER") {
-    }
-
-    if (variant === "LOGIN") {
+      if (variant === "LOGIN") {
+        signIn("credentials", { ...data, redirect: false })
+          .then((callback) => {
+            if (callback?.error) {
+              toast.error("Invalid credentials");
+            }
+            if (callback?.ok && !callback?.error) {
+              toast.success("Logged in!");
+              router.push("/users");
+            }
+          })
+          .finally(() => {
+            setIsLoading(false);
+          });
+      }
+    } catch (error) {
+      toast.error("Something went wrong");
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const socialAction = (action: string) => {
-    console.log(action);
-
     setIsLoading(true);
+    signIn(action, { redirect: false })
+      .then((callback) => {
+        if (callback?.error) {
+          toast.error("Invalid credentials");
+        }
+        if (callback?.ok && !callback?.error) {
+          toast.success("Logged in!");
+          router.push("/users");
+        }
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   return (
