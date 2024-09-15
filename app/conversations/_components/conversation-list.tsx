@@ -15,6 +15,7 @@ const ConversationList = ({ initialItems }: ConversationListProps) => {
   const [items, setItems] = useState(initialItems);
 
   const router = useRouter();
+  console.log(router, setItems);
 
   const { conversationId, isOpen } = useConversation();
 
