@@ -32,8 +32,6 @@ const Form = () => {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleUpload = async (result: any) => {
-    console.log(result);
-
     const res = await axios.post("/api/messages", {
       image: result?.info?.secure_url,
       conversationId,
