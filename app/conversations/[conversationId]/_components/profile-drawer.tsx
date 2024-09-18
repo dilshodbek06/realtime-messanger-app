@@ -32,8 +32,9 @@ const ProfileDrawer = ({ data, isOpen, onClose }: ProfileDrawerProps) => {
   const [confirmOpen, setConfirmOpen] = useState(false);
 
   const { members } = useActiveList();
-  // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
-  const isActive = members.indexOf(otherUser?.email!) !== -1;
+  const isActive = otherUser?.email
+    ? members.indexOf(otherUser.email) !== -1
+    : false;
 
   const joinedDate = useMemo(() => {
     return format(new Date(otherUser.createdAt), "PP");
