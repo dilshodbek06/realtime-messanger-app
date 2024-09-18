@@ -41,6 +41,7 @@ const SettingsModal = ({
 
   const image = watch("image");
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleUpload = (result: any) => {
     setValue("image", result?.info?.secure_url, { shouldValidate: true });
   };

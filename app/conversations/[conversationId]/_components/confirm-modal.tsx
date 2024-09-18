@@ -3,7 +3,7 @@
 import Button from "@/app/_components/button";
 import Modal from "@/app/_components/modal";
 import useConversation from "@/app/hooks/useConversation";
-import { Dialog, DialogTitle } from "@headlessui/react";
+import {  DialogTitle } from "@headlessui/react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
