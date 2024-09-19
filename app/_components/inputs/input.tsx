@@ -23,7 +23,7 @@ const Input = ({
   return (
     <div>
       <label
-        className="block text-sm font-medium leading-6 text-gray-900"
+        className="block text-sm font-medium leading-6 text-gray-900 dark:text-white"
         htmlFor={id}
       >
         {label}
@@ -54,6 +54,8 @@ const Input = ({
             focus:ring-sky-600
             sm:text-sm
             sm:leading-6
+            dark:bg-slate-600
+            dark:text-white
             `,
             errors[id] && "focus:ring-rose-500",
             disabled && "opacity-50 cursor-default"

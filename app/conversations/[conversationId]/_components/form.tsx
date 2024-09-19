@@ -7,9 +7,11 @@ import { HiPhoto, HiPaperAirplane } from "react-icons/hi2";
 import MessageInput from "./message-input";
 
 import { CldUploadButton } from "next-cloudinary";
+import useSendSound from "@/app/hooks/useSendSound";
 
 const Form = () => {
   const { conversationId } = useConversation();
+  const playSendSound = useSendSound();
 
   const {
     register,
@@ -24,23 +26,26 @@ const Form = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setValue("message", "", { shouldValidate: true });
-    axios.post("/api/messages", {
-      ...data,
-      conversationId,
-    });
+    axios
+      .post("/api/messages", {
+        ...data,
+        conversationId,
+      })
+      .then(() => {
+        playSendSound();
+      });
   };
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleUpload = async (result: any) => {
-    const res = await axios.post("/api/messages", {
+    await axios.post("/api/messages", {
       image: result?.info?.secure_url,
       conversationId,
     });
-    console.log(res.data);
   };
 
   return (
-    <div className="p-4 bg-white border-t flex items-center gap-2 lg:gap-4 w-full">
+    <div className="p-4 bg-white dark:bg-slate-800 border-t flex items-center gap-2 lg:gap-4 w-full">
       <CldUploadButton
         options={{ maxFiles: 1 }}
         onSuccess={handleUpload}

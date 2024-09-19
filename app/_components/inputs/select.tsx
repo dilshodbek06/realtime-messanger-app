@@ -14,9 +14,9 @@ interface SelectProps {
 const Select = ({ label, onChange, options, disabled, value }: SelectProps) => {
   return (
     <div className="z-[100]">
-      <label className="block text-sm font-medium leading-6 text-gray-900">
+      <label className="block dark:text-white text-sm font-medium leading-6 text-gray-900">
         {label}
-      </label> 
+      </label>
       <div className="mt-2">
         <ReactSelect
           isDisabled={disabled}
@@ -32,7 +32,15 @@ const Select = ({ label, onChange, options, disabled, value }: SelectProps) => {
             }),
           }}
           classNames={{
-            control: () => "text-sm",
+            control: () => "text-sm dark:bg-slate-600 dark:text-white",
+            dropdownIndicator: () => "dark:text-white",
+            input: () => "dark:text-white",
+            placeholder: () => "dark:text-white",
+            menu: () => "dark:bg-slate-600",
+            option: () => "dark:hover:bg-slate-700 dark:target:bg-slate-600",
+            noOptionsMessage: () => "dark:text-white",
+            multiValue: () => "dark:bg-slate-500 dark:text-white",
+            singleValue: () => "dark:text-white",
           }}
         />
       </div>

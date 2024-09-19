@@ -40,7 +40,7 @@ const Header = ({ conversation }: HeaderProps) => {
         isOpen={drawerOpen}
         onClose={() => setDrawerOpen(false)}
       />
-      <div className="bg-white w-full flex border-b-[1px] sm:px-4 py-3 px-4  lg:px-6 justify-between items-center shadow-sm">
+      <div className="bg-white dark:bg-slate-600 w-full flex border-b-[1px] sm:px-4 py-3 px-4  lg:px-6 justify-between items-center shadow-sm">
         <div className="flex gap-3 items-center">
           <Link
             href={"/conversations"}
@@ -56,7 +56,7 @@ const Header = ({ conversation }: HeaderProps) => {
 
           <div className="flex flex-col">
             <div>{conversation.name || otherUser.name}</div>
-            <div className="text-sm font-light text-neutral-500">
+            <div className="text-sm font-light text-neutral-500 dark:text-gray-300">
               {statusText}
             </div>
           </div>

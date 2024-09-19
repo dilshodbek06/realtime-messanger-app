@@ -38,11 +38,14 @@ const Button = ({
     focus-visible:outline
     focus-visible:outline-2
     focus-visible:outline-offset-2
+    dark:text-white
 
     `,
         disabled && "opacity-50 cursor-default",
         fullWidth && "w-full",
-        secondary ? "text-gray-900" : "text-white",
+        secondary
+          ? "text-gray-900 dark:hover:bg-slate-600"
+          : "text-white dark:hover:bg-slate-600",
         danger &&
           "bg-rose-500 hover:bg-rose-600 focus-visible:outline-rose-600",
         !secondary &&

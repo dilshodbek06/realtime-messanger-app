@@ -4,7 +4,9 @@ import Input from "@/app/_components/inputs/input";
 import { useCallback, useEffect, useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import AuthSocialButton from "./auth-social-button";
+
 import { BsGithub, BsGoogle } from "react-icons/bs";
+
 import axios from "axios";
 import toast from "react-hot-toast";
 
@@ -78,6 +80,8 @@ const AuthForm = () => {
   };
 
   const socialAction = (action: string) => {
+    toast("Soon...");
+    return;
     setIsLoading(true);
     signIn(action, { redirect: false })
       .then((callback) => {
@@ -96,7 +100,7 @@ const AuthForm = () => {
 
   return (
     <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-      <div className="bg-white px-4 py-8 shadow sm:rounded-lg sm:px-10">
+      <div className="bg-white dark:bg-slate-800 px-4 py-8 shadow sm:rounded-lg sm:px-10">
         <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
           {variant === "REGISTER" && (
             <Input
@@ -124,7 +128,7 @@ const AuthForm = () => {
             disabled={isLoading}
           />
           <div>
-            <Button disabled={isLoading} fullWidth type="submit">
+            <Button fullWidth type="submit">
               {variant === "LOGIN" ? "Sign in" : "Sign up"}
             </Button>
           </div>
@@ -135,7 +139,7 @@ const AuthForm = () => {
               <div className="w-full border-t border-gray-300" />
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="bg-white px-2 text-gray-500">
+              <span className="bg-white dark:bg-slate-700 dark:text-white px-2 text-gray-500">
                 Or continue with
               </span>
             </div>
@@ -152,7 +156,7 @@ const AuthForm = () => {
           </div>
         </div>
 
-        <div className="flex gap-2 justify-center text-sm mt-6 px-2 text-gray-500">
+        <div className="flex gap-2 justify-center text-sm mt-6 px-2 text-gray-500 dark:text-gray-300">
           <div>
             {variant === "LOGIN"
               ? "New to Messanger?"

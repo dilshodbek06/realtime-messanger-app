@@ -41,9 +41,12 @@ const DesktopItem = ({
         text-gray-500
         hover:text-black
         hover:bg-gray-100
+        dark:hover:bg-slate-500
+        dark:hover:text-white
+        dark:text-gray-300
 
         `,
-          active && "bg-gray-100 text-black"
+          active && "bg-gray-100 dark:bg-slate-500 dark:text-white text-black"
         )}
       >
         <Icon className="h-6 w-6 shrink-0" />

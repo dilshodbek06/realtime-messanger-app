@@ -46,12 +46,12 @@ const ConfirmModal = ({ onClose, isOpen }: ConfirmModalProps) => {
         <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
           <DialogTitle
             as="h3"
-            className={"text-base font-semibold leading-6 text-gray-900"}
+            className={"text-base font-semibold leading-6 text-gray-900 dark:text-white"}
           >
             Delete conversation
           </DialogTitle>
           <div className="mt-2">
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-gray-500 dark:text-gray-200">
               Are you sure want to delete this conversation?
             </p>
           </div>

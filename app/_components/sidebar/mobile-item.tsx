@@ -35,10 +35,13 @@ const MobileItem = ({ href, icon: Icon, active, onClick }: MobileItemProps) => {
     justify-center
     p-4
     text-gray-500
+    dark:text-white
     hover:text-black
     hover:bg-gray-100
+    dark:hover:bg-slate-800
+    dark:hover:text-white
     `,
-        active && "bg-gray-100 text-black"
+        active && "bg-gray-100 dark:bg-slate-800 dark:text-white   text-black"
       )}
     >
       <Icon className="h-6 w-6" />

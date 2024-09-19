@@ -9,8 +9,8 @@ interface AvatarProps {
 }
 const Avatar = ({ user }: AvatarProps) => {
   const { members } = useActiveList();
-  // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
-  const isActive = members.indexOf(user?.email!) !== -1;
+  const isActive = user?.email ? members.indexOf(user.email) !== -1 : false;
+
   return (
     <div className="relative">
       <div className="relative inline-block rounded-full overflow-hidden h-9 w-9 md:h-11 md:w-11">
@@ -18,6 +18,7 @@ const Avatar = ({ user }: AvatarProps) => {
           fill
           src={user?.image || "/images/placeholder.png"}
           alt="Avatar"
+          className="select-none"
         />
       </div>
       {isActive && (

@@ -62,7 +62,7 @@ const Body = ({ initialMessages }: BodyProps) => {
   }, [conversationId]);
 
   return (
-    <div className="flex-1 overflow-y-auto">
+    <div className="flex-1 overflow-y-auto dark:bg-slate-800">
       {messages.map((message, i) => (
         <MessageBox
           isLast={i === messages.length - 1}
